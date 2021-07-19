@@ -93,6 +93,9 @@ ports_zipcode_distribution[is.na(ports_zipcode_distribution)] <- 0
 
 View(ports_zipcode_distribution)
 
+par(mar=c(6,6,4,4))
+barplot(height=t(data.frame(ports_zipcode_distribution$'0', ports_zipcode_distribution$'1')), ylim=c(0,200), names.arg=ports_zipcode_distribution$zipcode, main='No open ports by company zipcode', legend=c('0', '1'), col=c('blue', 'red'), xlab='Company no open ports on zipcode', ylab='Amount of companies')
+
 ports_zipcode_answer <- chisq.test(ports_zipcode_distribution[1:9,c("0","1")], correct = TRUE)
 # Warning message:
 #   In chisq.test(ports_zipcode_distribution[1:9, c("0", "1")], correct = TRUE) :

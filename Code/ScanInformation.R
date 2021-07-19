@@ -96,6 +96,9 @@ type_zipcode_answer <- chisq.test(type_zipcode_distribution[1:9,c("auto","on-dem
 
 View(type_zipcode_answer$expected)
 
+par(mar=c(6,6,4,4))
+barplot(height=t(data.frame(type_zipcode_distribution$'auto', type_zipcode_distribution$'on-demand')), ylim=c(0,200), names.arg=type_zipcode_distribution$zipcode, main='Scan type by company zipcode', legend=c('auto', 'on-demand'), col=c('blue', 'red'), xlab='Company scan type on zipcode', ylab='Amount of companies')
+
 type_zipcode_answer
 
 # Pearson's Chi-squared test

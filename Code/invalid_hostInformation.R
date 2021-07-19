@@ -40,6 +40,9 @@ host_size_answer <- chisq.test(host_size_distribution[1:3,c("0","1")], correct =
 
 View(host_size_answer$expected)
 
+par(mar=c(6,6,4,4))
+barplot(height=t(data.frame(host_zipcode_distribution$'0', host_zipcode_distribution$'1')), ylim=c(0,200), names.arg=host_zipcode_distribution$zipcode, main='Invalid hosts by company zipcode', legend=c('0', '1'), col=c('blue', 'red'), xlab='Company invalid hosts on size', ylab='Amount of companies')
+
 host_size_answer <- fisher.test(host_size_distribution[1:3,c("0","1")])
 
 host_size_answer

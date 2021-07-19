@@ -21,7 +21,7 @@ binom.test(2553, 2658,
 
 # R/SQL Code Status Depending On
 # Size:
-  status_size_distribution <- sqldf("SELECT company_size, status, count(status) as amount
+status_size_distribution <- sqldf("SELECT company_size, status, count(status) as amount
                                    FROM lightscan JOIN organizations_subscriptions ON lightscan.id = id_lightscan
                                    GROUP BY company_size, status")
 
@@ -30,6 +30,9 @@ status_size_distribution <- pivot_wider(status_size_distribution, names_from = s
 status_size_distribution[is.na(status_size_distribution)] <- 0
 
 View(status_size_distribution)
+
+par(mar=c(6,6,4,4))
+barplot(height=t(data.frame(status_size_distribution$'4', status_size_distribution$'5')), ylim=c(0,2500), names.arg=status_size_distribution$company_size, main='Status by company size', legend=c('4', '5'), col=c('blue', 'red'), xlab='Company status on size', ylab='Amount of companies')
 
 status_size_answer <- chisq.test(status_size_distribution[1:3,c("4","5")], correct = TRUE)
 # Warning message:

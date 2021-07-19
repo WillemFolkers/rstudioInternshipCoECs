@@ -25,6 +25,9 @@ period_size_distribution[is.na(period_size_distribution)] <- 0
 
 View(period_size_distribution)
 
+par(mar=c(6,6,4,4))
+barplot(height=t(data.frame(period_size_distribution$'none', period_size_distribution$'halfyearly', period_size_distribution$'quarterly')), ylim=c(0,2500), names.arg=period_size_distribution$company_size, main='Scan period by company size', legend=c('none', 'halfyearly', 'quarterly'), col=c('blue', 'red', 'green'), xlab='Company scan period on size', ylab='Amount of companies')
+
 period_size_answer <- chisq.test(period_size_distribution[1:3,c("none","halfyearly","quarterly")], correct = TRUE)
 # Warning message:
 # In chisq.test(period_size_distribution[1:3, c("none", "halfyearly",  :

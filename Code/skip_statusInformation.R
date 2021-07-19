@@ -58,6 +58,9 @@ skip_sector_distribution[is.na(skip_sector_distribution)] <- 0
 
 View(skip_sector_distribution)
 
+par(mar=c(6,10,4,4))
+barplot(height=t(data.frame(skip_sector_distribution$'0', skip_sector_distribution$'1')), xlim=c(0,500), names.arg=skip_sector_distribution$name_en, horiz=TRUE, cex.names=0.5, las=1, main='Invalid hosts by company sector', legend=c('0', '1'), col=c('blue', 'red'), xlab='Amount of companies')
+
 skip_sector_answer <- chisq.test(skip_sector_distribution[1:21,c("0","1")], correct = FALSE)
 # Warning message:
 # In chisq.test(skip_sector_distribution[1:21, c("0", "1")], correct = FALSE) :
